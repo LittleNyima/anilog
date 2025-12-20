@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "bun node_modules/prettier/bin/prettier.cjs . --write --ignore-unknown --list-different"
+    "format": "bun node_modules/prettier/bin/prettier.cjs . --write --ignore-unknown --list-different",
+    "fetch": "bun run scripts/fetch-animes.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -31,7 +32,8 @@
     "prettier": "^3.7.4",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "npm:rolldown-vite@7.2.5"
+    "vite": "npm:rolldown-vite@7.2.5",
+    "yaml": "^2.8.2"
   },
   "overrides": {
     "vite": "npm:rolldown-vite@7.2.5"
