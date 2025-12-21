@@ -31,7 +31,7 @@ const App: React.FC = () => {
             </h1>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-zinc-400 font-medium">
+          {/* <nav className="hidden md:flex items-center gap-6 text-sm text-zinc-400 font-medium">
             <a href="#" className="hover:text-white transition-colors">
               Journal
             </a>
@@ -41,7 +41,7 @@ const App: React.FC = () => {
             <a href="#" className="hover:text-white transition-colors">
               Lists
             </a>
-          </nav>
+          </nav> */}
 
           <div className="flex items-center gap-4">
             <div className="text-xs font-mono text-zinc-500 hidden sm:block">
@@ -57,15 +57,20 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
         {/* Intro */}
-        <section className="mb-16 max-w-2xl">
-          <h2 className="text-4xl md:text-5xl font-serif mb-6 text-white leading-tight">
-            Recent Watchlist
-          </h2>
-          <p className="text-zinc-400 text-lg font-light leading-relaxed">
-            A curated log of anime experienced recently. Notes on visuals,
-            direction, and the feelings lingering after the credits roll.
-          </p>
-        </section>
+        {(!!__APP_CONFIG__.title || !!__APP_CONFIG__.slogan) && (
+          <section className="mb-16 max-w-2xl">
+            {!!__APP_CONFIG__.title && (
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 text-white leading-tight">
+                {__APP_CONFIG__.title}
+              </h2>
+            )}
+            {!!__APP_CONFIG__.slogan && (
+              <p className="text-zinc-400 text-lg font-light leading-relaxed">
+                {__APP_CONFIG__.slogan}
+              </p>
+            )}
+          </section>
+        )}
 
         {/* Grid */}
         <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
@@ -80,7 +85,7 @@ const App: React.FC = () => {
 
         {/* Footer */}
         <footer className="mt-8 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-sm">
-          <p>&copy; 2025 Anilog. All rights reserved.</p>
+          <p>Powered by <a href="https://github.com/LittleNyima/anilog" className="text-zinc-400 hover:text-white">Anilog</a>.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <span>Minimalist</span>
             <span>•</span>
