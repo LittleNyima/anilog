@@ -5,4 +5,3 @@ interface AppConfig {
 }
 
 declare const __APP_CONFIG__: AppConfig;
-

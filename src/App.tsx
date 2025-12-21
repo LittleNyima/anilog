@@ -85,7 +85,16 @@ const App: React.FC = () => {
 
         {/* Footer */}
         <footer className="mt-8 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-sm">
-          <p>Powered by <a href="https://github.com/LittleNyima/anilog" className="text-zinc-400 hover:text-white">Anilog</a>.</p>
+          <p>
+            Powered by{" "}
+            <a
+              href="https://github.com/LittleNyima/anilog"
+              className="text-zinc-400 hover:text-white"
+            >
+              Anilog
+            </a>
+            .
+          </p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <span>Minimalist</span>
             <span>•</span>

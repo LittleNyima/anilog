@@ -42,7 +42,7 @@ async function loadConfig(): Promise<{ username: string }> {
 async function fetchCollections(
   username: string,
   offset: number = 0,
-  limit: number = 30
+  limit: number = 30,
 ): Promise<BgmResponse> {
   const url = `https://api.bgm.tv/v0/users/${username}/collections?subject_type=2&type=2&limit=${limit}&offset=${offset}`;
 
@@ -54,7 +54,9 @@ async function fetchCollections(
   });
 
   if (!response.ok) {
-    throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `API request failed: ${response.status} ${response.statusText}`,
+    );
   }
 
   return response.json();
@@ -90,7 +92,9 @@ async function fetchAllCollections(username: string): Promise<Anime[]> {
     const animes = response.data.map(transformToAnime);
     allAnimes.push(...animes);
 
-    console.log(`Progress: ${allAnimes.length} / ${response.total} items fetched`);
+    console.log(
+      `Progress: ${allAnimes.length} / ${response.total} items fetched`,
+    );
 
     if (offset + limit >= response.total) {
       break;
@@ -112,7 +116,9 @@ async function main() {
     const outputPath = path.resolve(import.meta.dirname, "../src/animes.json");
     fs.writeFileSync(outputPath, JSON.stringify(animes, null, 2), "utf-8");
 
-    console.log(`\n✅ Successfully fetched ${animes.length} anime entries, saved to src/animes.json`);
+    console.log(
+      `\n✅ Successfully fetched ${animes.length} anime entries, saved to src/animes.json`,
+    );
   } catch (error) {
     console.error("❌ Failed to fetch data:", error);
     process.exit(1);

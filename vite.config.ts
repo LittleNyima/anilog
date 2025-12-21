@@ -23,7 +23,10 @@ export default defineConfig({
     {
       name: "html-config-inject",
       transformIndexHtml(html) {
-        return html.replace(/<title>.*<\/title>/, `<title>${config.title || "Anilog"}</title>`);
+        return html.replace(
+          /<title>.*<\/title>/,
+          `<title>${config.title || "Anilog"}</title>`,
+        );
       },
     },
   ],
@@ -35,4 +38,5 @@ export default defineConfig({
   define: {
     __APP_CONFIG__: JSON.stringify(config),
   },
+  base: "./",
 });
