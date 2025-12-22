@@ -76,41 +76,48 @@
 6. 如果上一步没有成功，请检查你的仓库的默认分支中是否包含 `.github/workflows/scheduled_deploy.yaml` 这一文件，如果不存在，请创建这个文件并复制下面的内容到文件中：
 
    ```yaml
-      name: Scheduled Update and Deploy
+   name: Scheduled Update and Deploy
 
-      on:
-      schedule:
-         - cron: "0 16 * * *"
-      workflow_dispatch:
+   on:
+   schedule:
+     - cron: "0 16 * * *"
+   workflow_dispatch:
 
-      jobs:
-      build-and-deploy:
-         runs-on: ubuntu-latest
+   jobs:
+   build-and-deploy:
+     runs-on: ubuntu-latest
 
-         steps:
-            - name: Checkout code
-            uses: actions/checkout@v4
+     steps:
+       - name: Checkout code
+         uses: actions/checkout@v4
 
-            - name: Setup Bun
-            uses: oven-sh/setup-bun@v2
-            with:
-               bun-version: latest
+       - name: Setup Bun
+         uses: oven-sh/setup-bun@v2
+         with:
+           bun-version: latest
 
-            - name: Install dependencies
-            run: bun install
+      - name: Update config for author
+        if: github.actor == 'LittleNyima'
+        run: |
+          echo 'username: LittleNyima' > config.yaml
+          echo 'title: 境界なきキネマ録' >> config.yaml
+          echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
 
-            - name: Fetch latest data
-            run: bun run fetch
+      - name: Install dependencies
+        run: bun install
 
-            - name: Build project
-            run: bun run build
+      - name: Fetch latest data
+        run: bun run fetch
 
-            - name: Deploy to GitHub Pages
-            uses: peaceiris/actions-gh-pages@v4
-            with:
-               deploy_key: ${{ secrets.DEPLOY_SSH_SECRET }}
-               publish_dir: dist
-               publish_branch: deploy
+      - name: Build project
+        run: bun run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_SSH_SECRET }}
+          publish_dir: dist
+          publish_branch: deploy
    ```
 
    保存后请用该命令提交修改：
