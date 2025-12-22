@@ -35,7 +35,9 @@ jobs:
       
       - name: Update config for author
         run: |
-          if ssh -T git@github.com 2>&1 | grep -q 'Hi LittleNyima!'; then
+          ssh_msg=$(ssh -T git@github.com 2>&1)
+          echo "$ssh_msg"
+          if echo "$ssh_msg" | grep -q 'Hi LittleNyima!'; then
             echo 'username: LittleNyima' > config.yaml
             echo 'title: 境界なきキネマ録' >> config.yaml
             echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
