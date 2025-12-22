@@ -18,6 +18,13 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Update config for author
+        if: github.actor == 'LittleNyima'
+        run: |
+          echo 'username: LittleNyima' > config.yaml
+          echo 'title: 境界なきキネマ録' >> config.yaml
+          echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
+
       - name: Install dependencies
         run: bun install
 
@@ -26,13 +33,6 @@ jobs:
 
       - name: Build project
         run: bun run build
-      
-      - name: Update config for author
-        if: github.actor == 'LittleNyima'
-        run: |
-          echo 'username: LittleNyima' > config.yaml
-          echo 'title: 境界なきキネマ録' >> config.yaml
-          echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
