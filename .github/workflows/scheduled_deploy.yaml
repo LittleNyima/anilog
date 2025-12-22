@@ -1,4 +1,4 @@
-name: Scheduled Update and Deploy
+name: scheduled-deploy
 
 on:
   schedule:

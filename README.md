@@ -71,12 +71,12 @@
    rm -f sshkey sshkey.pub
    ```
 
-5. 在默认情况下，由于本仓库已经带有 GitHub Action 的定义 yaml 文件，到这一步已经能够实现每天一次的自动化更新。可以前往仓库的 Actions 选项中找到 Scheduled Update and Deploy 这一项，并点击 Run workflow 来测试运行是否成功
+5. 在默认情况下，由于本仓库已经带有 GitHub Action 的定义 yaml 文件，到这一步已经能够实现每天一次的自动化更新。可以前往仓库的 Actions 选项中找到 scheduled-deploy 这一项，并点击 Run workflow 来测试运行是否成功
 
 6. 如果上一步没有成功，请检查你的仓库的默认分支中是否包含 `.github/workflows/scheduled_deploy.yaml` 这一文件，如果不存在，请创建这个文件并复制下面的内容到文件中：
 
    ```yaml
-   name: Scheduled Update and Deploy
+   name: scheduled-deploy
 
    on:
    schedule:
