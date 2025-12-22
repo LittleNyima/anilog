@@ -34,14 +34,11 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       
       - name: Update config for author
+        if: github.actor == 'LittleNyima'
         run: |
-          ssh_msg=$(ssh -T git@github.com 2>&1)
-          echo "$ssh_msg"
-          if echo "$ssh_msg" | grep -q 'Hi LittleNyima!'; then
-            echo 'username: LittleNyima' > config.yaml
-            echo 'title: 境界なきキネマ録' >> config.yaml
-            echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
-          fi
+          echo 'username: LittleNyima' > config.yaml
+          echo 'title: 境界なきキネマ録' >> config.yaml
+          echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
 
       - name: Build and Deploy
         run: bun run deploy
