@@ -2,8 +2,6 @@
 
 ## 快速开始
 
-> 如果你能够理解以下内容的操作方式，请直接按下面的步骤进行。否则，作者正在编写一个详细的图文教程，届时可阅读图文教程了解部署方式。
-
 1. 通过右上角的 `Use this template` fork 本仓库，并将仓库克隆到本地
 
 2. 编辑 `config.yaml` 文件，填入你的 bangumi ID、页面的标题以及 slogan
@@ -96,15 +94,8 @@
          with:
            bun-version: latest
 
-      - name: Update config for author
-        if: github.actor == 'LittleNyima'
-        run: |
-          echo 'username: LittleNyima' > config.yaml
-          echo 'title: 境界なきキネマ録' >> config.yaml
-          echo 'slogan: カオスから芸術まで、物語の深淵を覗き込む。' >> config.yaml
-
       - name: Install dependencies
-        run: bun install
+        run: bun ci
 
       - name: Fetch latest data
         run: bun run fetch
